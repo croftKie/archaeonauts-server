@@ -11,7 +11,7 @@ class UpdatePlayerModel(BaseModel):
     username: Optional[str]
     email: Optional[EmailStr]
     hash: Optional[str]
-    stats: Optional[object]
+    stats: Optional[dict]
 
 def ResponseModel(data, message):
     return {
