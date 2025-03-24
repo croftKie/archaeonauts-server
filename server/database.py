@@ -18,10 +18,14 @@ async def retrieve_players():
     return players
 
 async def add_player(player_data: dict) -> dict:
-    print(players_collection)
     player = players_collection.insert_one(player_data)
     new_player = players_collection.find_one({"_id": player.inserted_id})
     return player_helper(new_player)
+
+async def login_player(username: str) -> dict:
+    player = players_collection.find_one({"username": username})
+    if player:
+        return player_helper(player)
 
 async def retrieve_player(id: str) -> dict:
     player = players_collection.find_one({"_id": ObjectId(id)})
